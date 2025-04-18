@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const argon2 = require('argon2');
+const bcrypt = require('bcryptjs'); // Import bcryptjs
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
@@ -14,10 +14,10 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Hash password before saving
+// Hash password before saving using bcryptjs
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  this.password = await argon2.hash(this.password);
+  this.password = await bcrypt.hash(this.password, 10); // Use bcrypt to hash password
   next();
 });
 
