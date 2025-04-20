@@ -25,3 +25,5 @@ app.listen(PORT, () => {
   console.log(`🚀 Serveur démarré : http://localhost:${PORT}`);
   console.log(listEndpoints(app));
 });
+const offreRoutes = require('./routes/offreRoutes');
+app.use('/api/offres', offreRoutes);
