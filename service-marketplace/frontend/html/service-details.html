@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details</title>
+</head>
+<body>
+    <h1>Service Details</h1>
+    <div id="service-details"></div>
+
+    <script>
+        // Extract the service ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('id');
+
+        // Simulate fetching service details by ID (in a real app, you might fetch data from a database)
+        const services = {
+            '68023a7': {
+                name: 'Home Cleaning',
+                description: 'Professional home cleaning services for a spotless living space.'
+            },
+            '12345': {
+                name: 'Handyman Services',
+                description: 'Expert handyman services for all your home repair needs.'
+            }
+        };
+
+        // Find the service based on the ID
+        const service = services[serviceId];
+        
+        if (service) {
+            document.getElementById('service-details').innerHTML = `
+                <h2>${service.name}</h2>
+                <p>${service.description}</p>
+            `;
+        } else {
+            document.getElementById('service-details').innerHTML = '<p>Service not found.</p>';
+        }
+    </script>
+</body>
+</html>

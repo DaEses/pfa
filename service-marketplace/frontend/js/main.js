@@ -1,43 +1,59 @@
-// Main JavaScript file for handling interactive features
-
-// Toggle mobile navigation menu
 document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+    const servicesContainer = document.getElementById('services-container');
+  
+    // Function to load services
+    async function loadServices() {
+      try {
+        const response = await fetch('http://localhost:5000/api/services');
+        
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+  
+        const services = await response.json();
+  
+        // Display services
+        displayServices(services);
+      } catch (error) {
+        console.error('Erreur lors du chargement des services:', error);
+        servicesContainer.innerHTML = '<p>Erreur lors du chargement des services.</p>';
+      }
     }
-});
-
-// Form validation
-function validateForm(formElement) {
-    const emailInput = formElement.querySelector('input[type="email"]');
-    const passwordInput = formElement.querySelector('input[type="password"]');
-    let isValid = true;
-
-    if (emailInput && !emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        showError(emailInput, 'Please enter a valid email address');
-        isValid = false;
+  
+    // Function to display services
+    function displayServices(services) {
+      servicesContainer.innerHTML = '';
+  
+      if (services.length === 0) {
+        servicesContainer.innerHTML = '<p>Aucun service trouvé.</p>';
+        return;
+      }
+  
+      services.forEach(service => {
+        const serviceCard = document.createElement('div');
+        serviceCard.className = 'service-card';
+  
+        serviceCard.innerHTML = `
+          <h3>${service.titre}</h3>
+          <p class="service-category">${service.categorie}</p>
+          <p class="service-location">${service.ville}</p>
+          <p>${service.description}</p>
+        `;
+        
+        servicesContainer.appendChild(serviceCard);
+      });
     }
-
-    if (passwordInput && passwordInput.value.length < 6) {
-        showError(passwordInput, 'Password must be at least 6 characters long');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-function showError(input, message) {
-    const errorDiv = input.parentElement.querySelector('.error-message') || 
-                    document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
+    // Define the viewServiceDetails function
+    function viewServiceDetails(serviceId) {
+    // Logic to view service details (e.g., show a modal, navigate to a new page, etc.)
+    console.log('Viewing details for service:', serviceId);
     
-    if (!input.parentElement.querySelector('.error-message')) {
-        input.parentElement.appendChild(errorDiv);
-    }
-}
+    // Example action: redirect to a details page
+    window.location.href = `http://127.0.0.1:5000/service-details.html?id=${serviceId}`;
+  }
+  
+  
+    // Load the services when the page loads
+    loadServices();
+  });
+  

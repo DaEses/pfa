@@ -8,9 +8,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['admin', 'provider', 'customer'],
     required: true
-  }
+  },
+  ville: { type: String, trim: true }, // La ville est incluse ici
 }, {
   timestamps: true
 });
+
 
 module.exports = mongoose.model('User', userSchema);

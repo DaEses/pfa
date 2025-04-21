@@ -12,7 +12,25 @@ exports.createService = async (req, res) => {
 
 exports.getServices = async (req, res) => {
   try {
-    const services = await Service.find();
+    const { categorie, ville, keywords } = req.query;
+    let filter = {};
+    
+    if (categorie) {
+      filter.categorie = categorie;
+    }
+    
+    if (ville) {
+      filter.ville = ville;
+    }
+    
+    if (keywords) {
+      filter.$or = [
+        { titre: { $regex: keywords, $options: 'i' } },
+        { description: { $regex: keywords, $options: 'i' } }
+      ];
+    }
+    
+    const services = await Service.find(filter);
     res.json(services);
   } catch (err) {
     res.status(500).json({ error: err.message });
