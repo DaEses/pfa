@@ -11,7 +11,7 @@ A web application that connects service providers with customers for daily tasks
 
 ## Tech Stack
 
-- Frontend: React.js
+- Frontend: html , css , js
 - Backend: Node.js with Express
 - Database: MongoDB
 - Authentication: JWT
