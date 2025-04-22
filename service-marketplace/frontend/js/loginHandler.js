@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Erreur réseau !");
         console.error(err);
       }
+
     });
   });
-  
+  // After successful registration/login:
+localStorage.setItem('token', token); // Store token
+localStorage.setItem('isLoggedIn', 'true'); // Update UI state
+window.location.href = '/services.html'; // Redirect to services
