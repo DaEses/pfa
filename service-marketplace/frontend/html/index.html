@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkillBridge - Your Service Marketplace</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
+    <script>
+        axios.get('https://api.example.com/data')
+          .then(response => console.log(response.data))
+          .catch(error => console.error(error));
+      </script>
+      
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">SkillBridge</a>
@@ -30,7 +38,41 @@
             </div>
         </div>
     </header>
-
+    <section class="filter-bar">
+        <div class="container">
+          <h2>Rechercher un service</h2>
+          <div class="filters">
+            <div class="filter-item">
+              <label for="category">Catégorie</label>
+              <select id="category">
+                <option value="">Toutes</option>
+                <option value="plumbing">Plomberie</option>
+                <option value="ac-repair">Réparation Clim</option>
+                <option value="electrical">Électricité</option>
+                <option value="carpentry">Menuiserie</option>
+              </select>
+            </div>
+      
+            <div class="filter-item">
+              <label for="city">Ville</label>
+              <select id="city">
+                <option value="">Toutes</option>
+                <option value="paris">Paris</option>
+                <option value="lyon">Lyon</option>
+                <option value="marseille">Marseille</option>
+              </select>
+            </div>
+      
+            <div class="filter-item">
+              <label for="search">Recherche</label>
+              <input type="text" id="search" placeholder="Mot-clé, ex : électricien">
+            </div>
+      
+            <button id="filter-button">Filtrer</button>
+          </div>
+        </div>
+      </section>
+      
     <section class="services">
         <div class="container">
             <h2>Our Services</h2>
@@ -112,5 +154,7 @@
             </div>
         </div>
     </footer>
+    <script src="../js/FilteBar.js"></script>
+
 </body>
 </html>

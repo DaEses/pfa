@@ -4,10 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - SkillBridge</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="filter-bar">
+        <div class="filter-item">
+          <label for="categorie">Catégorie:</label>
+          <select id="categorie" name="categorie">
+            <option value="">Toutes les catégories</option>
+            <!-- Les options seront chargées dynamiquement -->
+          </select>
+        </div>
+        
+        <div class="filter-item">
+          <label for="ville">Ville:</label>
+          <select id="ville" name="ville">
+            <option value="">Toutes les villes</option>
+            <!-- Les options seront chargées dynamiquement -->
+          </select>
+        </div>
+        
+        <div class="filter-item">
+          <label for="keywords">Recherche:</label>
+          <input type="text" id="keywords" name="keywords" placeholder="Mots-clés...">
+        </div>
+        
+        <button id="apply-filters">Appliquer les filtres</button>
+      </div>
+      
+      <div id="services-container">
+        <!-- Les services seront chargés ici -->
+      </div>
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">SkillBridge</a>
@@ -80,6 +108,10 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+
+<!-- JS -->
+<script src="../js/main.js" defer></script>
+<script type="module" src="../js/FilteBar.js"></script>
+
 </body>
 </html>
