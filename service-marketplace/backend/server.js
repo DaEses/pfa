@@ -15,8 +15,13 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());  // Permet les requêtes CORS entre différents domaines
-app.use(express.json());  // Parse le corps des requêtes en JSON
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);app.use(express.json());  // Parse le corps des requêtes en JSON
 // Serve static files from the 'frontend' folder
 app.use(express.static(path.join(__dirname, 'frontend')));
 
