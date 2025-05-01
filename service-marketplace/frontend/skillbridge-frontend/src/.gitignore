@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+frontend/skillbridge-frontend/node_modules/
+
+# Ignore README.md
+frontend/skillbridge-frontend/README.md
 
 # testing
 /coverage
